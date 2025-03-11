@@ -215,6 +215,7 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.AllowAny",
     ],
     "DEFAULT_AUTHENTICATION_CLASSES": [
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
         "rest_framework.authentication.TokenAuthentication",
         "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.SessionAuthentication",
@@ -285,10 +286,13 @@ if SENTRY_ENABLE == True:
 
 
 #celery configs
-CELERY_BROKER_URL = config("CELERY_BROKER_URL", default= 'redis://redis:6379/1')
+CELERY_BROKER_URL = config("CELERY_BROKER_URL", default= 'amqp://rabbitmq:5672')
 CELERY_TIMEZONE = config("TIME_ZONE", default= "UTC")
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ['json']
 
 # caching configs
 REDIS_CACHE_URL = config("REDIS_CACHE_URL", default= 'redis://redis:6379/2')
