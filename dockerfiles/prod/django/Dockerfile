@@ -10,6 +10,13 @@ COPY ./requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 
+# ایجاد کاربر با UID 1000 (فقط اگر وجود نداشته باشد)
+RUN if ! id -u 1000 >/dev/null 2>&1; then \
+        groupadd -g 1000 myuser && \
+        useradd -u 1000 -g myuser -m -s /bin/bash myuser; \
+    fi
+
+
 # set work directory
 WORKDIR /usr/src/app
 
