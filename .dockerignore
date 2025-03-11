@@ -5,3 +5,4 @@ env.bak/
 venv.bak/
 README.md
 LICENSE
+local_settings.py
