@@ -50,6 +50,9 @@ urlpatterns = [
     path("", include("website.urls")),
     # testing sentry logger
     path("sentry-debug/", trigger_error),
+
+
+    path('accounts/', include('accounts.urls')),
 ]
 
 # if this is enable instead of seeing the project you will see a page which shows a simple text as you will be launching soon
