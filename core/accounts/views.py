@@ -39,8 +39,9 @@ class SendNumberOtpView(CreateAPIView):
             totp = pyotp.TOTP('base32secret3232',digits=6)
             code = totp.now()  # => '492039'
             cache.set(f'{phone_number}',  code , timeout=60 * 2)
+            phone_number='98'+phone_number[1:]
             celery_send_otp_sms.delay(phone_number=phone_number, code=code)
-            # send_faraz_otp_code(phone_number=phone_number,code=code)
+            # send_faraz_otp_code(phone_number=989917411543,code=code)
 
 
 

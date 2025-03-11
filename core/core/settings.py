@@ -16,6 +16,8 @@ from pathlib import Path
 from django.contrib.messages import constants as messages
 from decouple import config
 
+from core import local_settings
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -57,7 +59,6 @@ INSTALLED_APPS = [
     # Third-party apps
     'rest_framework_simplejwt',
     'django_redis',
-
     # Local apps
     'accounts.apps.AccountsConfig',
 ]
@@ -108,7 +109,7 @@ DATABASES = {
         "NAME": config("PGDB_NAME", default="postgres"),
         "USER": config("PGDB_USER", default="postgres"),
         "PASSWORD": config("PGDB_PASS", default="postgres"),
-        "HOST": config("PGDB_HOST", default="db"),
+        "HOST": config("PGDB_HOST", default="localhost"),
         "PORT": config("PGDB_PORT", cast=int, default=5432),
     }
 }
@@ -304,7 +305,7 @@ if SENTRY_ENABLE == True:
 
 
 #celery configs
-CELERY_BROKER_URL = config("CELERY_BROKER_URL", default= 'amqp://rabbitmq:5672')
+CELERY_BROKER_URL = config("CELERY_BROKER_URL", default= 'amqp://localhost:5672')
 CELERY_TIMEZONE = config("TIME_ZONE", default= "UTC")
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
@@ -313,11 +314,11 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json']
 
 # caching configs
-REDIS_CACHE_URL = config("REDIS_CACHE_URL", default= 'redis://redis:6379/2')
+# REDIS_CACHE_URL = config("REDIS_CACHE_URL", default= 'redis://:root@localhost:6379/1')
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": REDIS_CACHE_URL,
+        "LOCATION": 'redis://:root@localhost:6379/1',
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         },
@@ -351,11 +352,11 @@ SIMPLE_JWT = {
 
 
 
-KAVENEGAR_API_KEY=config("KAVENEGAR_API_KEY", default= '')
+KAVENEGAR_API_KEY=config("KAVENEGAR_API_KEY", default= local_settings.KAVENEGAR_API_KEY)
 
-FARAZ_SMS_PATTERN_CODE = config("FARAZ_SMS_PATTERN_CODE", default= '')
+FARAZ_SMS_PATTERN_CODE = config("FARAZ_SMS_PATTERN_CODE", default= local_settings.FARAZ_SMS_PATTERN_CODE)
 
-FARAZ_SMS_API_KEY = config("FARAZ_SMS_API_KEY", default= '')
+FARAZ_SMS_API_KEY = config("FARAZ_SMS_API_KEY", default= local_settings.FARAZ_SMS_API_KEY)
 
 
 
