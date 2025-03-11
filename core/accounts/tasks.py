@@ -3,8 +3,9 @@ import logging
 
 from celery.exceptions import MaxRetriesExceededError
 
-logger = logging.getLogger(__name__)
 from lib.utils import send_faraz_otp_code
+
+logger = logging.getLogger(__name__)
 
 
 @shared_task(  bind=True,
