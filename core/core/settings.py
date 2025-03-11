@@ -347,3 +347,30 @@ SIMPLE_JWT = {
     'SIGNING_KEY': SECRET_KEY,
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
+
+
+
+
+KAVENEGAR_API_KEY=config("KAVENEGAR_API_KEY", default= '')
+
+FARAZ_SMS_PATTERN_CODE = config("FARAZ_SMS_PATTERN_CODE", default= '')
+
+FARAZ_SMS_API_KEY = config("FARAZ_SMS_API_KEY", default= '')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
