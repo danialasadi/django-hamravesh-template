@@ -182,6 +182,10 @@ MESSAGE_TAGS = {
 }
 
 
+AUTH_USER_MODEL = 'accounts.User'
+
+
+
 # Email Configurations for production and development
 EMAIL_BACKEND = config(
     "EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend"
