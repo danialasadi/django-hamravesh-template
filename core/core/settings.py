@@ -352,11 +352,11 @@ SIMPLE_JWT = {
 
 
 
-KAVENEGAR_API_KEY=config("KAVENEGAR_API_KEY", default= local_settings.KAVENEGAR_API_KEY)
+KAVENEGAR_API_KEY=config("KAVENEGAR_API_KEY", default= 'local_settings.KAVENEGAR_API_KEY')
 
-FARAZ_SMS_PATTERN_CODE = config("FARAZ_SMS_PATTERN_CODE", default= local_settings.FARAZ_SMS_PATTERN_CODE)
+FARAZ_SMS_PATTERN_CODE = config("FARAZ_SMS_PATTERN_CODE", default= 'local_settings.FARAZ_SMS_PATTERN_CODE')
 
-FARAZ_SMS_API_KEY = config("FARAZ_SMS_API_KEY", default= local_settings.FARAZ_SMS_API_KEY)
+FARAZ_SMS_API_KEY = config("FARAZ_SMS_API_KEY", default= 'local_settings.FARAZ_SMS_API_KEY')
 
 
 
