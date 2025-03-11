@@ -264,21 +264,21 @@ SWAGGER_SETTINGS = {
 }
 
 
-# django debug toolbar for docker usage
-if SHOW_DEBUGGER_TOOLBAR:
-    INSTALLED_APPS += [
-        "debug_toolbar",
-    ]
-    MIDDLEWARE += [
-        "debug_toolbar.middleware.DebugToolbarMiddleware",
-    ]
-    import socket  # only if you haven't already imported this
-
-    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-    INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + [
-        "127.0.0.1",
-        "10.0.2.2",
-    ]
+# # django debug toolbar for docker usage
+# if SHOW_DEBUGGER_TOOLBAR:
+#     INSTALLED_APPS += [
+#         "debug_toolbar",
+#     ]
+#     MIDDLEWARE += [
+#         "debug_toolbar.middleware.DebugToolbarMiddleware",
+#     ]
+#     import socket  # only if you haven't already imported this
+#
+#     hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+#     INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + [
+#         "127.0.0.1",
+#         "10.0.2.2",
+#     ]
 
 
 # sentry online monitoring
@@ -313,11 +313,11 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json']
 
 # caching configs
-# REDIS_CACHE_URL = config("REDIS_CACHE_URL", default= 'redis://:root@localhost:6379/1')
+REDIS_CACHE_URL = config("REDIS_CACHE_URL", default= 'redis://:root@localhost:6379/1')
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": 'redis://:root@localhost:6379/1',
+        "LOCATION": REDIS_CACHE_URL,
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         },

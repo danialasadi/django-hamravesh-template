@@ -3,7 +3,7 @@ import logging
 
 from celery.exceptions import MaxRetriesExceededError
 
-from lib.utils import send_faraz_otp_code
+from otp_utils.utils import send_faraz_otp_code
 
 logger = logging.getLogger(__name__)
 

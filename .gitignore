@@ -15,7 +15,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-core/lib/
+core/otp_utils/lib/
 lib64/
 parts/
 sdist/
